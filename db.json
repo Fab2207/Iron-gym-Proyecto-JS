@@ -1,0 +1,293 @@
+{
+  "usuarios": [
+    {
+      "id": "admin-1",
+      "email": "admin1@example.com",
+      "contrasena": "admin123",
+      "rol": "admin",
+      "nombre": "Administrador 1"
+    },
+    {
+      "id": "admin-2",
+      "email": "admin2@example.com",
+      "contrasena": "admin123",
+      "rol": "admin",
+      "nombre": "Administrador 2"
+    },
+    {
+      "id": "receptionist-1",
+      "email": "recepcion1@example.com",
+      "contrasena": "recep123",
+      "rol": "receptionist",
+      "nombre": "Recepcionista 1"
+    },
+    {
+      "id": "receptionist-2",
+      "email": "recepcion2@example.com",
+      "contrasena": "recep123",
+      "rol": "receptionist",
+      "nombre": "Recepcionista 2"
+    },
+    {
+      "id": "receptionist-3",
+      "email": "recepcion3@example.com",
+      "contrasena": "recep123",
+      "rol": "receptionist",
+      "nombre": "Recepcionista 3"
+    },
+    {
+      "id": "client-ana",
+      "email": "ana@example.com",
+      "contrasena": "client123",
+      "rol": "client",
+      "nombre": "Ana García"
+    },
+    {
+      "id": "client-pedro",
+      "email": "pedro@example.com",
+      "contrasena": "client123",
+      "rol": "client",
+      "nombre": "Pedro López"
+    },
+    {
+      "id": "client-laura",
+      "email": "laura@example.com",
+      "contrasena": "client123",
+      "rol": "client",
+      "nombre": "Laura Torres"
+    },
+    {
+      "id": "client-carlos",
+      "email": "carlos@example.com",
+      "contrasena": "client123",
+      "rol": "client",
+      "nombre": "Carlos Ruiz"
+    },
+    {
+      "id": "client-sofia",
+      "email": "sofia@example.com",
+      "contrasena": "client123",
+      "rol": "client",
+      "nombre": "Sofía Vargas"
+    },
+    {
+      "id": "client-diego",
+      "email": "diego@example.com",
+      "contrasena": "client123",
+      "rol": "client",
+      "nombre": "Diego Fernández"
+    },
+    {
+      "id": "client-maria",
+      "email": "maria@example.com",
+      "contrasena": "client123",
+      "rol": "client",
+      "nombre": "María Jiménez"
+    },
+    {
+      "id": "trainer-sofia-user",
+      "email": "trainer@example.com",
+      "contrasena": "trainer123",
+      "rol": "trainer",
+      "nombre": "Sofia Entrenadora"
+    },
+    {
+      "id": "trainer-javier-user",
+      "email": "javier.trainer@example.com",
+      "contrasena": "javier123",
+      "rol": "trainer",
+      "nombre": "Javier Entrenador"
+    }
+  ],
+  "clientes": [
+    {
+      "id": "client-ana",
+      "nombreCompleto": "Ana García",
+      "email": "ana@example.com",
+      "telefono": "912345678",
+      "idMembresia": "premium",
+      "fechaNacimiento": "1990-05-15",
+      "fechaRegistro": "2023-01-20"
+    },
+    {
+      "id": "client-pedro",
+      "nombreCompleto": "Pedro López",
+      "email": "pedro@example.com",
+      "telefono": "916598231",
+      "idMembresia": "basica",
+      "fechaNacimiento": "1988-11-22",
+      "fechaRegistro": "2023-02-10"
+    },
+    {
+      "id": "client-laura",
+      "nombreCompleto": "Laura Torres",
+      "email": "laura@example.com",
+      "telefono": "928547996",
+      "idMembresia": "intermedia",
+      "fechaNacimiento": "1995-03-01",
+      "fechaRegistro": "2023-03-05"
+    },
+    {
+      "id": "client-carlos",
+      "nombreCompleto": "Carlos Ruiz",
+      "email": "carlos@example.com",
+      "telefono": "935821447",
+      "idMembresia": "basica",
+      "fechaNacimiento": "1992-07-28",
+      "fechaRegistro": "2023-04-12"
+    },
+    {
+      "id": "client-sofia",
+      "nombreCompleto": "Sofía Vargas",
+      "email": "sofia@example.com",
+      "telefono": "944126589",
+      "idMembresia": "premium",
+      "fechaNacimiento": "1998-09-03",
+      "fechaRegistro": "2023-05-01"
+    },
+    {
+      "id": "client-diego",
+      "nombreCompleto": "Diego Fernández",
+      "email": "diego@example.com",
+      "telefono": "956532145",
+      "idMembresia": "intermedia",
+      "fechaNacimiento": "1985-12-10",
+      "fechaRegistro": "2023-06-18"
+    },
+    {
+      "id": "client-maria",
+      "nombreCompleto": "María Jiménez",
+      "email": "maria@example.com",
+      "telefono": "963658974",
+      "idMembresia": "premium",
+      "fechaNacimiento": "1993-01-25",
+      "fechaRegistro": "2023-07-07"
+    }
+  ],
+  "membresias": [
+    {
+      "id": "basica",
+      "nombre": "Básica",
+      "descripcion": "Acceso limitado al gimnasio",
+      "precio": 20,
+      "duracionEnDias": 30,
+      "activa": true
+    },
+    {
+      "id": "intermedia",
+      "nombre": "Intermedia",
+      "descripcion": "Acceso a clases grupales",
+      "precio": 35,
+      "duracionEnDias": 90,
+      "activa": true
+    },
+    {
+      "id": "premium",
+      "nombre": "Premium",
+      "descripcion": "Acceso total y entrenador personal",
+      "precio": 50,
+      "duracionEnDias": 365,
+      "activa": true
+    }
+  ],
+  "clases": [
+    {
+      "id": "clase-yoga",
+      "nombre": "Yoga Suave",
+      "descripcion": "Clase relajante de yoga para todos los niveles.",
+      "idEntrenador": "trainer-sofia",
+      "horario": "Lunes 10:00-11:00",
+      "cupoMaximo": 15,
+      "cupoActual": 8,
+      "salon": "Sala A",
+      "activa": true
+    },
+    {
+      "id": "clase-hiit",
+      "nombre": "HIIT Intenso",
+      "descripcion": "Entrenamiento de alta intensidad por intervalos.",
+      "idEntrenador": "trainer-javier",
+      "horario": "Martes 18:00-19:00",
+      "cupoMaximo": 12,
+      "cupoActual": 10,
+      "salon": "Sala B",
+      "activa": true
+    }
+  ],
+  "entrenadores": [
+    {
+      "id": "trainer-sofia",
+      "nombreCompleto": "Sofía Morales",
+      "email": "sofia.morales@example.com",
+      "telefono": "977123456",
+      "especialidad": "Yoga y Pilates",
+      "biografia": "Instructora certificada con más de 10 años de experiencia.",
+      "activo": true
+    },
+    {
+      "id": "trainer-javier",
+      "nombreCompleto": "Javier Castro",
+      "email": "javier.castro@example.com",
+      "telefono": "988765432",
+      "especialidad": "Entrenamiento Funcional",
+      "biografia": "Especialista en fuerza y acondicionamiento.",
+      "activo": true
+    }
+  ],
+  "sucursales": [
+    {
+      "id": "sucursal-centro",
+      "nombre": "Centro Urbano",
+      "direccion": "Av. Los Olivos 456, Lima",
+      "telefono": "014567890",
+      "horarioAtencion": "06:00-22:00"
+    },
+    {
+      "id": "sucursal-miraflores",
+      "nombre": "Miraflores Gym",
+      "direccion": "Calle Las Flores 789, Miraflores",
+      "telefono": "019876543",
+      "horarioAtencion": "07:00-21:00"
+    }
+  ],
+  "rutinas": [
+    {
+      "id": "rutina-fuerza-principiante",
+      "nombre": "Rutina de Fuerza - Principiante",
+      "descripcion": "Entrenamiento de fuerza general para novatos.",
+      "idEntrenador": "trainer-sofia",
+      "nivel": "Principiante",
+      "duracionSemanas": 4,
+      "ejercicios": [
+        { "nombre": "Sentadilla", "series": 3, "repeticiones": 10 },
+        { "nombre": "Press de Banca", "series": 3, "repeticiones": 8 },
+        { "nombre": "Remo con Mancuernas", "series": 3, "repeticiones": 12 }
+      ]
+    },
+    {
+      "id": "rutina-cardio-intermedio",
+      "nombre": "Rutina de Cardio - Intermedio",
+      "descripcion": "Sesión de cardio para mejorar resistencia.",
+      "idEntrenador": "trainer-javier",
+      "nivel": "Intermedio",
+      "duracionMinutos": 45,
+      "ejercicios": [
+        { "nombre": "Correr en cinta", "duracionMinutos": 20, "intensidad": "moderada" },
+        { "nombre": "Elíptica", "duracionMinutos": 15, "intensidad": "alta" }
+      ]
+    },
+    {
+      "id": "rutina-yoga-flexibilidad",
+      "nombre": "Rutina de Yoga - Flexibilidad",
+      "descripcion": "Secuencia de posturas para aumentar la flexibilidad.",
+      "idEntrenador": "trainer-sofia",
+      "nivel": "Todos los niveles",
+      "duracionMinutos": 60,
+      "ejercicios": [
+        { "nombre": "Saludos al Sol", "repeticiones": 5 },
+        { "nombre": "Perro Boca Abajo", "duracionSegundos": 30 },
+        { "nombre": "Guerrero I y II", "duracionSegundos": 30 }
+      ]
+    }
+  ]
+}

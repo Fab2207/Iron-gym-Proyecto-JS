@@ -1,0 +1,132 @@
+.container-estadisticas {
+    background-color: #121212;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+
+.section {
+    background: #1f1f1f;
+    border: 1px solid #2c2c2c;
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.section:hover {
+    transform: translateY(-4px);
+}
+
+.section-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #ffc107;
+    /* Amarillo gimnasio */
+    display: flex;
+    align-items: center;
+}
+
+.section-title i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    color: #ff2e2e;
+    /* Rojo gimnasio */
+}
+
+.table-resumen {
+    background-color: #121212;
+    color: #fff;
+}
+
+.table-resumen th {
+    background-color: #ff2e2e !important;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table-resumen td {
+    text-align: center;
+    font-weight: 500;
+    background-color: #1f1f1f;
+    color: #ffc107;
+}
+
+.estadisticas-container {
+    background-color: #f0f0f0;
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.titulo-seccion {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    color: #111;
+    font-weight: bold;
+}
+
+.grafico {
+    margin-bottom: 2rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.titulo-grafico {
+    margin-bottom: 1rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.tabla-contenedor {
+    margin-top: 2rem;
+}
+
+.titulo-tabla {
+    color: #111;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.table-mensual {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.table-mensual thead {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.table-mensual th,
+.table-mensual td {
+    padding: 0.75rem;
+    text-align: center;
+    border: none;
+}
+
+/* Interlineado: zebra */
+.table-mensual tbody tr:nth-child(odd) {
+    background-color: #1a1a1a;
+    /* negro */
+    color: #f1f1f1;
+}
+
+.table-mensual tbody tr:nth-child(even) {
+    background-color: #3a3a3a;
+    /* plomo */
+    color: #f1f1f1;
+}
+
+.table-mensual tbody tr:hover {
+    background-color: #555;
+}
