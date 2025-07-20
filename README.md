@@ -65,10 +65,12 @@ Abre una **nueva ventana de terminal** en la raíz de tu proyecto y ejecuta el s
 
 ```bash
 json-server --watch db.json --port 3000
+```
 
-### 1. Iniciar el Proyecto
+### 2. Iniciar el Proyecto
 
 Abre una **nueva ventana de terminal** en la raíz de tu proyecto y ejecuta el siguiente comando:
 
 ```bash
 npm run dev
+```
