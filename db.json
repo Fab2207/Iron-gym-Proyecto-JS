@@ -232,6 +232,15 @@
       "especialidad": "Entrenamiento Funcional",
       "biografia": "Especialista en fuerza y acondicionamiento.",
       "activo": true
+    },
+    {
+      "nombreCompleto": "Jose Quispe ",
+      "email": "jose@gmail.com",
+      "especialidad": "Levantamiento de Pesas",
+      "telefono": "965874123",
+      "biografia": "Gran profesional con años de experiencia",
+      "activo": true,
+      "id": "3ca6"
     }
   ],
   "sucursales": [
@@ -259,9 +268,21 @@
       "nivel": "Principiante",
       "duracionSemanas": 4,
       "ejercicios": [
-        { "nombre": "Sentadilla", "series": 3, "repeticiones": 10 },
-        { "nombre": "Press de Banca", "series": 3, "repeticiones": 8 },
-        { "nombre": "Remo con Mancuernas", "series": 3, "repeticiones": 12 }
+        {
+          "nombre": "Sentadilla",
+          "series": 3,
+          "repeticiones": 10
+        },
+        {
+          "nombre": "Press de Banca",
+          "series": 3,
+          "repeticiones": 8
+        },
+        {
+          "nombre": "Remo con Mancuernas",
+          "series": 3,
+          "repeticiones": 12
+        }
       ]
     },
     {
@@ -272,8 +293,16 @@
       "nivel": "Intermedio",
       "duracionMinutos": 45,
       "ejercicios": [
-        { "nombre": "Correr en cinta", "duracionMinutos": 20, "intensidad": "moderada" },
-        { "nombre": "Elíptica", "duracionMinutos": 15, "intensidad": "alta" }
+        {
+          "nombre": "Correr en cinta",
+          "duracionMinutos": 20,
+          "intensidad": "moderada"
+        },
+        {
+          "nombre": "Elíptica",
+          "duracionMinutos": 15,
+          "intensidad": "alta"
+        }
       ]
     },
     {
@@ -284,9 +313,18 @@
       "nivel": "Todos los niveles",
       "duracionMinutos": 60,
       "ejercicios": [
-        { "nombre": "Saludos al Sol", "repeticiones": 5 },
-        { "nombre": "Perro Boca Abajo", "duracionSegundos": 30 },
-        { "nombre": "Guerrero I y II", "duracionSegundos": 30 }
+        {
+          "nombre": "Saludos al Sol",
+          "repeticiones": 5
+        },
+        {
+          "nombre": "Perro Boca Abajo",
+          "duracionSegundos": 30
+        },
+        {
+          "nombre": "Guerrero I y II",
+          "duracionSegundos": 30
+        }
       ]
     }
   ]
