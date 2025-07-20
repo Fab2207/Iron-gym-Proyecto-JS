@@ -22,10 +22,9 @@ export const iniciarSesionUsuario = async (email: string, contrasena: string): P
 };
 
 export const registrarUsuario = async (datos: DatosCreacionUsuario): Promise<Usuario> => {
-    // Generar ID único para el usuario
     const id = `user-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     
-    // Crear el usuario con ID generado
+
     const usuarioCompleto = {
         ...datos,
         id
