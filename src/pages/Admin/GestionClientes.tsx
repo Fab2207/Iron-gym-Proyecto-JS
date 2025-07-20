@@ -220,14 +220,27 @@ const GestionClientes: React.FC = () => {
                             <button
                               className="btn btn-outline-info"
                               title="Ver historial"
+                              onClick={() => alert('Función de historial próximamente')}
                             >
                               <i className="bi bi-clock-history"></i>
                             </button>
                             <button
                               className="btn btn-outline-success"
                               title="Marcar asistencia"
+                              onClick={() => alert('Función de marcar asistencia próximamente')}
                             >
                               <i className="bi bi-check-circle"></i>
+                            </button>
+                            <button
+                              className="btn btn-outline-danger"
+                              title="Eliminar cliente"
+                              onClick={() => {
+                                if (window.confirm('¿Está seguro de eliminar este cliente?')) {
+                                  alert('Función de eliminar próximamente');
+                                }
+                              }}
+                            >
+                              <i className="bi bi-trash"></i>
                             </button>
                           </div>
                         </td>

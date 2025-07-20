@@ -8,6 +8,7 @@ const GestionRutinas: React.FC = () => {
   const [rutinas, setRutinas] = useState<Rutina[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const fetchRutinas = async () => {
     try {
@@ -25,6 +26,12 @@ const GestionRutinas: React.FC = () => {
   useEffect(() => {
     fetchRutinas();
   }, []);
+
+  const filteredRutinas = rutinas.filter(rutina =>
+    rutina.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    rutina.descripcion.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (rutina.nivel && rutina.nivel.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
 
   const handleEliminarRutina = async (id: string) => {
     if (window.confirm("¿Estás seguro de que quieres eliminar esta rutina?")) {
@@ -51,7 +58,22 @@ const GestionRutinas: React.FC = () => {
         Crear Nueva Rutina
       </button>
 
-      {rutinas.length === 0 ? (
+      <div className="mb-4">
+        <div className="input-group">
+          <span className="input-group-text">
+            <i className="bi bi-search"></i>
+          </span>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Buscar rutina por nombre, descripción o nivel..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+      </div>
+
+      {filteredRutinas.length === 0 ? (
         <div className="alert alert-info text-center">No hay rutinas disponibles.</div>
       ) : (
         <table className="table table-striped table-hover">
@@ -65,7 +87,7 @@ const GestionRutinas: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {rutinas.map((rutina) => (
+            {filteredRutinas.map((rutina) => (
               <tr key={rutina.id}>
                 <td>{rutina.nombre}</td>
                 <td>{rutina.descripcion}</td>
@@ -74,6 +96,12 @@ const GestionRutinas: React.FC = () => {
                 <td>
                   <button className="btn btn-sm btn-info me-2" onClick={() => navigate(`/dashboard/trainer/rutinas/editar/${rutina.id}`)}>
                     Ver/Editar
+                  </button>
+                  <button 
+                    className="btn btn-sm btn-success me-2" 
+                    onClick={() => alert('Función de asignar a cliente próximamente')}
+                  >
+                    Asignar
                   </button>
                   <button className="btn btn-sm btn-danger" onClick={() => handleEliminarRutina(rutina.id)}>
                     Eliminar

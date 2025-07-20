@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { DatosCreacionMembresia, DatosActualizacionMembresia } from '../../types';
 import type { Membresia } from '../../types/Membresia';
+import { crearNuevaMembresia, actualizarDatosMembresia } from '../../services/api';
 
 interface FormularioMembresiaProps {
   membresiaExistente?: Membresia;
@@ -33,14 +34,46 @@ const FormularioMembresia: React.FC<FormularioMembresiaProps> = ({ membresiaExis
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const datos: DatosCreacionMembresia | DatosActualizacionMembresia = {
-      nombre,
-      descripcion,
-      precio,
-      duracionEnDias,
-      activa,
-    };
-    onGuardar(datos);
+    
+    if (membresiaExistente) {
+      // Actualizar membresía existente
+      const datosActualizacion: DatosActualizacionMembresia = {
+        nombre,
+        descripcion,
+        precio,
+        duracionEnDias,
+        activa,
+      };
+      
+      actualizarDatosMembresia(membresiaExistente.id, datosActualizacion)
+        .then(() => {
+          alert('Membresía actualizada exitosamente');
+          onGuardar(datosActualizacion);
+        })
+        .catch((error) => {
+          console.error('Error al actualizar membresía:', error);
+          alert('Error al actualizar membresía');
+        });
+    } else {
+      // Crear nueva membresía
+      const datosCreacion: DatosCreacionMembresia = {
+        nombre,
+        descripcion,
+        precio,
+        duracionEnDias,
+        activa,
+      };
+      
+      crearNuevaMembresia(datosCreacion)
+        .then(() => {
+          alert('Membresía creada exitosamente');
+          onGuardar(datosCreacion);
+        })
+        .catch((error) => {
+          console.error('Error al crear membresía:', error);
+          alert('Error al crear membresía');
+        });
+    }
   };
 
   return (

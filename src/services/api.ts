@@ -22,16 +22,50 @@ export const iniciarSesionUsuario = async (email: string, contrasena: string): P
 };
 
 export const registrarUsuario = async (datos: DatosCreacionUsuario): Promise<Usuario> => {
+    // Generar ID único para el usuario
+    const id = `user-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    
+    // Crear el usuario con ID generado
+    const usuarioCompleto = {
+        ...datos,
+        id
+    };
+    
     const response = await fetch(`${API_BASE_URL}/usuarios`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(datos),
+        body: JSON.stringify(usuarioCompleto),
     });
     if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Error al registrar usuario.");
     }
     const usuarioCreado = await response.json();
+    
+    // Si el rol es cliente, también crear entrada en la tabla clientes
+    if (datos.rol === 'client') {
+        const clienteId = `client-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+        const clienteData = {
+            id: clienteId,
+            nombreCompleto: datos.nombre || 'Cliente',
+            email: datos.email,
+            telefono: '',
+            idMembresia: 'basica', // Membresía por defecto
+            fechaNacimiento: '',
+            fechaRegistro: new Date().toISOString().split('T')[0]
+        };
+        
+        try {
+            await fetch(`${API_BASE_URL}/clientes`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(clienteData),
+            });
+        } catch (error) {
+            console.error('Error al crear entrada de cliente:', error);
+        }
+    }
+    
     return usuarioCreado as Usuario;
 };
 

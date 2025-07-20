@@ -10,6 +10,7 @@ const GestionClases: React.FC = () => {
   const [clases, setClases] = useState<Clase[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const fetchClases = async () => {
     if (user && user.id) {
@@ -32,6 +33,12 @@ const GestionClases: React.FC = () => {
   useEffect(() => {
     fetchClases();
   }, [user]);
+
+  const filteredClases = clases.filter(clase =>
+    clase.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    clase.horario.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (clase.salon && clase.salon.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
 
   const handleEliminarClase = async (id: string) => {
     if (window.confirm("¿Estás seguro de que quieres eliminar esta clase?")) {
@@ -58,7 +65,22 @@ const GestionClases: React.FC = () => {
         Crear Nueva Clase
       </button>
 
-      {clases.length === 0 ? (
+      <div className="mb-4">
+        <div className="input-group">
+          <span className="input-group-text">
+            <i className="bi bi-search"></i>
+          </span>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Buscar clase por nombre, horario o salón..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+      </div>
+
+      {filteredClases.length === 0 ? (
         <div className="alert alert-info text-center">No hay clases asignadas a este entrenador.</div>
       ) : (
         <table className="table table-striped table-hover">
@@ -73,7 +95,7 @@ const GestionClases: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {clases.map((clase) => (
+            {filteredClases.map((clase) => (
               <tr key={clase.id}>
                 <td>{clase.nombre}</td>
                 <td>{clase.horario}</td>
@@ -81,12 +103,20 @@ const GestionClases: React.FC = () => {
                 <td>{clase.cupoActual}/{clase.cupoMaximo}</td>
                 <td>{clase.activa ? 'Activa' : 'Inactiva'}</td>
                 <td>
-                  <button className="btn btn-sm btn-info me-2" onClick={() => navigate(`/dashboard/trainer/clases/editar/${clase.id}`)}>
-                    Ver/Editar
-                  </button>
-                  <button className="btn btn-sm btn-danger" onClick={() => handleEliminarClase(clase.id)}>
-                    Eliminar
-                  </button>
+                  <div className="btn-group btn-group-sm">
+                    <button className="btn btn-info" onClick={() => navigate(`/dashboard/trainer/clases/editar/${clase.id}`)}>
+                      Ver/Editar
+                    </button>
+                    <button 
+                      className="btn btn-success" 
+                      onClick={() => alert('Función de gestionar asistencia próximamente')}
+                    >
+                      Asistencia
+                    </button>
+                    <button className="btn btn-danger" onClick={() => handleEliminarClase(clase.id)}>
+                      Eliminar
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

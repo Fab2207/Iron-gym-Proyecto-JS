@@ -4,6 +4,7 @@ import type {
   DatosActualizacionEntrenador,
 } from "../../types";
 import type { Entrenador } from "../../types/Entrenador";
+import { crearNuevoEntrenador, actualizarDatosEntrenador } from "../../services/api";
 
 interface FormularioEntrenadorProps {
   entrenadorExistente?: Entrenador;
@@ -51,15 +52,48 @@ const FormularioEntrenador: React.FC<FormularioEntrenadorProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const datos: DatosCreacionEntrenador | DatosActualizacionEntrenador = {
-      nombreCompleto,
-      email,
-      especialidad,
-      telefono: telefono || undefined, // Enviar undefined si está vacío
-      biografia: biografia || undefined, // Enviar undefined si está vacío
-      activo,
-    };
-    onGuardar(datos);
+    
+    if (entrenadorExistente) {
+      // Actualizar entrenador existente
+      const datosActualizacion: DatosActualizacionEntrenador = {
+        nombreCompleto,
+        email,
+        especialidad,
+        telefono: telefono || undefined,
+        biografia: biografia || undefined,
+        activo,
+      };
+      
+      actualizarDatosEntrenador(entrenadorExistente.id, datosActualizacion)
+        .then(() => {
+          alert('Entrenador actualizado exitosamente');
+          onGuardar(datosActualizacion);
+        })
+        .catch((error) => {
+          console.error('Error al actualizar entrenador:', error);
+          alert('Error al actualizar entrenador');
+        });
+    } else {
+      // Crear nuevo entrenador
+      const datosCreacion: DatosCreacionEntrenador = {
+        nombreCompleto,
+        email,
+        especialidad,
+        telefono: telefono || undefined,
+        biografia: biografia || undefined,
+        activo,
+      };
+      
+      crearNuevoEntrenador(datosCreacion)
+        .then(() => {
+          alert('Entrenador creado exitosamente');
+          onGuardar(datosCreacion);
+        })
+        .catch((error) => {
+          console.error('Error al crear entrenador:', error);
+          alert('Error al crear entrenador');
+        });
+    }
   };
 
   return (
