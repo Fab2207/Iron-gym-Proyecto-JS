@@ -162,6 +162,14 @@
       "idMembresia": "premium",
       "fechaNacimiento": "1993-01-25",
       "fechaRegistro": "2023-07-07"
+    },
+    {
+      "nombreCompleto": "Jose Luis Quispe Mamani",
+      "email": "jose@gmail.com",
+      "idMembresia": "basica",
+      "telefono": "965874125",
+      "fechaNacimiento": "2004-10-20",
+      "id": "19d6"
     }
   ],
   "membresias": [
@@ -211,6 +219,17 @@
       "cupoMaximo": 12,
       "cupoActual": 10,
       "salon": "Sala B",
+      "activa": true
+    },
+    {
+      "id": "9c21",
+      "nombre": "Cardio",
+      "descripcion": "ejercicios de full cardio",
+      "idEntrenador": "3ca6",
+      "horario": "1:00 pm",
+      "cupoMaximo": 10,
+      "cupoActual": 1,
+      "salon": "A0408",
       "activa": true
     }
   ],
@@ -326,6 +345,39 @@
           "duracionSegundos": 30
         }
       ]
+    }
+  ],
+  "recepcionistas": [
+    {
+      "id": "receptionist-1",
+      "nombreCompleto": "Recepcionista 1",
+      "email": "recepcion1@example.com",
+      "telefono": "111222333",
+      "rol": "receptionist",
+      "contrasena": "recep123"
+    },
+    {
+      "id": "receptionist-2",
+      "nombreCompleto": "Recepcionista 2",
+      "email": "recepcion2@example.com",
+      "telefono": "444555666",
+      "rol": "receptionist",
+      "contrasena": "recep123"
+    },
+    {
+      "id": "receptionist-3",
+      "nombreCompleto": "Recepcionista 3",
+      "email": "recepcion3@example.com",
+      "telefono": "777888999",
+      "rol": "receptionist",
+      "contrasena": "recep123"
+    },
+    {
+      "id": "receptionist-4",
+      "email": "recepcion4@example.com",
+      "contrasena": "recep123",
+      "rol": "receptionist",
+      "nombreCompleto": "receptionist-4"
     }
   ]
 }

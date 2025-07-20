@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
-type Receptionist = {
-  id: string;
-  email: string;
-  contrasena: string;
-  rol: "receptionist";
-};
+import type{ Recepcionista } from "../../../src/types"; // Asegúrate de que la ruta sea correcta según tu estructura de carpetas.
 
 const Recepcionistas: React.FC = () => {
-  const [recepcionistas, setRecepcionistas] = useState<Receptionist[]>([]);
+  const [recepcionistas, setRecepcionistas] = useState<Recepcionista[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [formId, setFormId] = useState("");
   const [formEmail, setFormEmail] = useState("");
@@ -20,14 +14,11 @@ const Recepcionistas: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const fetchRecepcionistas = () => {
+    // Apunta directamente al endpoint de recepcionistas
     axios
-      .get("http://localhost:3000/users")
+      .get("http://localhost:3000/recepcionistas") // CAMBIO AQUÍ
       .then((response) => {
-        const users = response.data as any[];
-        const data: Receptionist[] = users.filter(
-          (user: any) => user.rol === "receptionist"
-        );
-        setRecepcionistas(data);
+        setRecepcionistas(response.data as Recepcionista[]);
       })
       .catch((error) =>
         console.error("Error al obtener recepcionistas:", error)
@@ -41,7 +32,7 @@ const Recepcionistas: React.FC = () => {
   const handleEliminar = (id: string) => {
     if (confirm("¿Estás seguro de que deseas eliminar este recepcionista?")) {
       axios
-        .delete(`http://localhost:3000/users/${id}`)
+        .delete(`http://localhost:3000/recepcionistas/${id}`) // CAMBIO AQUÍ
         .then(() => {
           fetchRecepcionistas();
         })
@@ -55,19 +46,19 @@ const Recepcionistas: React.FC = () => {
     setShowForm(true);
     setEditMode(false);
     setEditId(null);
-    setFormId("");
+    setFormId(`recep-${Date.now()}`); // Genera un ID único para nuevos recepcionistas
     setFormEmail("");
     setFormContrasena("");
     setFormError("");
   };
 
-  const handleEditar = (recep: Receptionist) => {
+  const handleEditar = (recep: Recepcionista) => {
     setShowForm(true);
     setEditMode(true);
     setEditId(recep.id);
     setFormId(recep.id);
     setFormEmail(recep.email);
-    setFormContrasena(recep.contrasena);
+    setFormContrasena(recep.contrasena || ""); // Asegúrate de manejar si la contraseña no está presente
     setFormError("");
   };
 
@@ -77,15 +68,18 @@ const Recepcionistas: React.FC = () => {
       setFormError("Completa todos los campos.");
       return;
     }
-    if (editMode && editId) {
-      const updatedRecep: Receptionist = {
+
+    const recepcionistaPayload: Omit<Recepcionista, 'rol'> & { rol: 'receptionist' } = {
         id: formId,
         email: formEmail,
         contrasena: formContrasena,
         rol: "receptionist",
-      };
+        nombreCompleto: formId // Puedes añadir un campo para el nombre completo si lo necesitas
+    };
+
+    if (editMode && editId) {
       axios
-        .put(`http://localhost:3000/users/${editId}`, updatedRecep)
+        .put(`http://localhost:3000/recepcionistas/${editId}`, recepcionistaPayload) // CAMBIO AQUÍ
         .then(() => {
           fetchRecepcionistas();
           setShowForm(false);
@@ -95,14 +89,8 @@ const Recepcionistas: React.FC = () => {
           console.error("Error al editar recepcionista:", error);
         });
     } else {
-      const nuevoRecep: Receptionist = {
-        id: formId,
-        email: formEmail,
-        contrasena: formContrasena,
-        rol: "receptionist",
-      };
       axios
-        .post("http://localhost:3000/users", nuevoRecep)
+        .post("http://localhost:3000/recepcionistas", recepcionistaPayload) // CAMBIO AQUÍ
         .then(() => {
           fetchRecepcionistas();
           setShowForm(false);
@@ -141,7 +129,7 @@ const Recepcionistas: React.FC = () => {
               value={formId}
               onChange={(e) => setFormId(e.target.value)}
               required
-              disabled={editMode}
+              disabled={editMode} // El ID no debe ser editable en modo edición
             />
           </div>
           <div className="mb-2">

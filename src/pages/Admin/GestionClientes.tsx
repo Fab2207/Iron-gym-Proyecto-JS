@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getAllClients } from "../../services/api";
-import type{ Cliente } from "../../types/Cliente";
-import type{ Membresia } from "../../types/Membresia";
+import { getAllClients, createClient, actualizarCliente, eliminarCliente } from "../../services/api";
+import type { Cliente } from "../../types/Cliente";
+import type { Membresia } from "../../types/Membresia";
+import type { DatosCreacionCliente, DatosActualizacionCliente } from "../../types";
 import FormularioCliente from "../../components/administracion/FormularioCliente";
 
 const GestionClientes: React.FC = () => {
@@ -75,12 +76,12 @@ const GestionClientes: React.FC = () => {
     setMostrarFormulario(true);
   };
 
-  const manejarGuardarCliente = async (datos: any) => {
+  const manejarGuardarCliente = async (datos: DatosCreacionCliente | DatosActualizacionCliente) => {
     try {
       if (clienteEditando) {
-        console.log("Actualizando cliente:", clienteEditando.id, datos);
+        await actualizarCliente(clienteEditando.id, datos as DatosActualizacionCliente);
       } else {
-        console.log("Creando nuevo cliente:", datos);
+        await createClient(datos as DatosCreacionCliente);
       }
       setMostrarFormulario(false);
       setClienteEditando(undefined);
@@ -88,6 +89,18 @@ const GestionClientes: React.FC = () => {
     } catch (error: any) {
       setError(error.message || "Error al guardar el cliente.");
       console.error("Error al guardar:", error);
+    }
+  };
+
+  const manejarEliminarCliente = async (id: string) => {
+    if (window.confirm('¿Está seguro de eliminar este cliente? Esta acción es irreversible.')) {
+      try {
+        await eliminarCliente(id);
+        cargarClientes();
+      } catch (error: any) {
+        setError(error.message || "Error al eliminar el cliente.");
+        console.error("Error al eliminar:", error);
+      }
     }
   };
 
@@ -202,10 +215,10 @@ const GestionClientes: React.FC = () => {
                         <td>{cliente.telefono || "N/A"}</td>
                         <td>
                           <span className={`badge ${
-                            cliente.idMembresia === "Premium" ? "bg-warning" :
-                            cliente.idMembresia === "Intermedia" ? "bg-info" : "bg-secondary"
+                            cliente.idMembresia === "premium" ? "bg-warning" :
+                            cliente.idMembresia === "intermedia" ? "bg-info" : "bg-secondary"
                           }`}>
-                            {cliente.idMembresia}
+                            {membresias.find(m => m.id === cliente.idMembresia)?.nombre || cliente.idMembresia}
                           </span>
                         </td>
                         <td>
@@ -234,11 +247,7 @@ const GestionClientes: React.FC = () => {
                             <button
                               className="btn btn-outline-danger"
                               title="Eliminar cliente"
-                              onClick={() => {
-                                if (window.confirm('¿Está seguro de eliminar este cliente?')) {
-                                  alert('Función de eliminar próximamente');
-                                }
-                              }}
+                              onClick={() => manejarEliminarCliente(cliente.id)}
                             >
                               <i className="bi bi-trash"></i>
                             </button>

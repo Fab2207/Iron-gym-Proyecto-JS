@@ -17,6 +17,8 @@ const FormularioCliente: React.FC<FormularioClienteProps> = ({ clienteExistente,
     const [telefono, setTelefono] = useState(clienteExistente?.telefono || '');
     const [fechaNacimiento, setFechaNacimiento] = useState(clienteExistente?.fechaNacimiento || '');
 
+    const [fechaRegistro, setFechaRegistro] = useState(clienteExistente?.fechaRegistro || new Date().toISOString().slice(0, 10));
+
     useEffect(() => {
         if (clienteExistente) {
             setNombreCompleto(clienteExistente.nombreCompleto);
@@ -24,25 +26,42 @@ const FormularioCliente: React.FC<FormularioClienteProps> = ({ clienteExistente,
             setIdMembresia(clienteExistente.idMembresia);
             setTelefono(clienteExistente.telefono || '');
             setFechaNacimiento(clienteExistente.fechaNacimiento || '');
+            setFechaRegistro(clienteExistente.fechaRegistro);
         } else {
             setNombreCompleto('');
             setEmail('');
             setIdMembresia('');
             setTelefono('');
             setFechaNacimiento('');
+            setFechaRegistro(new Date().toISOString().slice(0, 10));
         }
     }, [clienteExistente]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const datos: DatosCreacionCliente | DatosActualizacionCliente = {
-            nombreCompleto,
-            email,
-            idMembresia,
-            telefono,
-            fechaNacimiento,
-        };
-        onGuardar(datos);
+
+
+        if (clienteExistente) {
+            const datosActualizacion: DatosActualizacionCliente = {
+                nombreCompleto,
+                email,
+                idMembresia,
+                telefono,
+                fechaNacimiento,
+
+            };
+            onGuardar(datosActualizacion);
+        } else {
+            const datosCreacion: DatosCreacionCliente = {
+                nombreCompleto,
+                email,
+                idMembresia,
+                telefono,
+                fechaNacimiento,
+                fechaRegistro,
+            };
+            onGuardar(datosCreacion);
+        }
     };
 
     return (
@@ -75,6 +94,13 @@ const FormularioCliente: React.FC<FormularioClienteProps> = ({ clienteExistente,
                 <label htmlFor="fechaNacimiento">Fecha de Nacimiento:</label>
                 <input type="date" id="fechaNacimiento" value={fechaNacimiento} onChange={(e) => setFechaNacimiento(e.target.value)} />
             </div>
+            { }
+            {!clienteExistente && (
+                <div>
+                    <label htmlFor="fechaRegistro">Fecha de Registro:</label>
+                    <input type="date" id="fechaRegistro" value={fechaRegistro} onChange={(e) => setFechaRegistro(e.target.value)} required />
+                </div>
+            )}
             <button type="submit">Guardar</button>
             <button type="button" onClick={onCancelar}>Cancelar</button>
         </form>

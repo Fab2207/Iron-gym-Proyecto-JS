@@ -15,7 +15,7 @@ export interface Cliente {
   telefono?: string;
   idMembresia: string;
   fechaNacimiento?: string;
-  fechaRegistro?: string;
+  fechaRegistro: string;
 }
 
 export interface Membresia {
@@ -89,6 +89,7 @@ export interface DatosCreacionCliente {
   telefono?: string;
   idMembresia: string;
   fechaNacimiento?: string;
+  fechaRegistro: string;
 }
 
 export interface DatosCreacionMembresia {
@@ -126,7 +127,7 @@ export interface DatosCreacionSucursal {
   horarioAtencion: string;
 }
 
-export type DatosCreacionRutina = Omit<Rutina, 'id'>;
+export type DatosCreacionRutina = Omit<Rutina, "id">;
 
 export interface DatosActualizacionUsuario {
   email?: string;
@@ -179,4 +180,28 @@ export interface DatosActualizacionSucursal {
   horarioAtencion?: string;
 }
 
-export type DatosActualizacionRutina = Partial<Omit<Rutina, 'id'>>;
+export type DatosActualizacionRutina = Partial<Omit<Rutina, "id">>;
+
+export interface Recepcionista {
+  id: string;
+  nombreCompleto: string;
+  email: string;
+  telefono?: string;
+  rol: "receptionist";
+  contrasena?: string;
+}
+
+export interface DatosCreacionRecepcionista {
+  nombreCompleto: string;
+  email: string;
+  telefono?: string;
+  contrasena?: string;
+  rol: "receptionist";
+}
+
+export interface DatosActualizacionRecepcionista {
+  nombreCompleto?: string;
+  email?: string;
+  telefono?: string;
+  contrasena?: string;
+}
