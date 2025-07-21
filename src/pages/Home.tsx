@@ -17,7 +17,7 @@ const Home: React.FC = () => {
     };
 
     const handleRegister = () => {
-        navigate("/registro");
+        navigate("/register");
     };
 
     const handleCloseModal = () => {
@@ -145,8 +145,13 @@ const Home: React.FC = () => {
                     <h2 className="mb-4">Conoce nuestro ambiente</h2>
                     <div className="ratio ratio-16x9 mx-auto" style={{ maxWidth: "800px" }}>
                         <iframe
-                            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                            title="Video Gimnasio"
+                            width="560"
+                            height="315"
+                            src="https://www.youtube.com/embed/eAlNvWgTDZQ?si=_Q-adzd-9_lN_Z2f"
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
                             allowFullScreen
                         ></iframe>
                     </div>
